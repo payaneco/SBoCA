@@ -1,0 +1,245 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:rowOrderPreserved="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/button_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXX"/>
+
+            <TextView
+                android:id="@+id/voteText"
+                android:layout_weight="0.3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="投票数:      "/>
+
+            <TextView
+                android:id="@+id/button_votes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_vote"
+                android:textColor="#0000ff"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.3"
+                android:id="@+id/agreeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="同意数:      "/>
+
+            <TextView
+                android:id="@+id/button_agrees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_agree"
+                android:textColor="#0000ff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_weight="0.4"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+
+            <ScrollView
+                android:id="@+id/sakuraScroll"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:fillViewport="true"
+                android:layout_margin="5dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/sakuraText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:typeface="monospace"
+                    android:background="@color/background_sakura"/>
+            </ScrollView>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/messageCountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="残0瓶"/>
+
+                <TextView
+                    android:id="@+id/positionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="全0瓶"/>
+
+                <ScrollView
+                    android:layout_weight="1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/link_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"/>
+                 </ScrollView>
+
+                <ImageView
+                    android:id="@+id/sakuraImage"
+                    android:layout_width="64dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_weight="0.3"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginRight="5dp">
+
+                <ImageView
+                    android:id="@+id/unyuImage"
+                    android:layout_width="64dp"
+                    android:layout_height="96dp"
+                    android:layout_gravity="top"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/title_all_users"/>
+
+                <TextView
+                    android:id="@+id/all_users_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="@string/title_channel_users"/>
+
+                <TextView
+                    android:id="@+id/channel_users_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/unyuScroll"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:fillViewport="true"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/unyuText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:typeface="monospace"
+                    android:background="@color/background_unyu"/>
+            </ScrollView>
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_media_previous"
+                    android:id="@+id/button_first" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_media_next"
+                    android:id="@+id/button_last" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_media_rew"
+                    android:id="@+id/button_previous" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_media_ff"
+                    android:id="@+id/button_next" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_btn_speak_now"
+                    android:id="@+id/button_play" />
+
+                <Button
+                    android:id="@+id/button_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_menu_upload"
+                    android:text="@string/button_post"/>
+
+                <Button
+                    android:id="@+id/button_rehearsal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/ic_media_play"
+                    android:text="@string/button_rehearsal"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SBoCA</string>
+    <string name="title_section1">瓶棚</string>
+    <string name="title_section2">お茶の間</string>
+    <string name="title_section3">キッチン</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">設定</string>
+    <string name="action_sstp">本家に行く</string>
+    <string name="url_sstp">http://bottle.mikage.to/</string>
+    <string name="play_failed">瓶の再生に失敗しました…。</string>
+    <string name="msg_time_empty">時間を入力してください。</string>
+    <string name="first_bottle">最初の瓶です。</string>
+    <string name="last_bottle">最後の瓶です。</string>
+    <string name="summon_failed">SVGが見つかりませんでした。</string>
+    <string name="ghost_downloading_format">Web上から\"%s\"さんを招待中…。</string>
+    <string name="luid_load_success">LUIDを取得しました！</string>
+    <string name="luid_load_failure">LUID取得に失敗しました。</string>
+    <string name="luid_exists">設定済み</string>
+    <string name="vote_format">投票数：%1$5d </string>
+    <string name="agree_format">同意数：%1$5d </string>
+    <string name="button_vote"><u>投票する</u></string>
+    <string name="button_agree"><u>同意する</u></string>
+    <string name="title_all_users">総人数</string>
+    <string name="title_channel_users">CH人数</string>
+    <string name="button_first">first</string>
+    <string name="button_last">last</string>
+    <string name="button_previous">next</string>
+    <string name="button_next">prev</string>
+    <string name="button_replay">replay</string>
+    <string name="button_rehearsal">再生</string>
+    <string name="button_play_all">連続再生</string>
+    <string name="radio_script_all">all</string>
+    <string name="radio_script_raw">scr</string>
+    <string name="radio_script_text">txt</string>
+    <string name="button_append">追加</string>
+    <string name="button_modify">修正</string>
+    <string name="button_try">デモ</string>
+    <string name="button_post">投瓶</string>
+    <string name="default_ghost_name">ホステス</string>
+    <string name="point_low">#000080</string>
+    <string name="point_medium">#00CC00</string>
+    <string name="point_high">#FF0000</string>
+    <string name="preference_title">設定</string>
+    <string name="preference_luid_get_key">get_luid</string>
+    <string name="preference_luid_get_title">LUID取得</string>
+    <string name="preference_luid_get_summary">新規LUID(ロングユーザID)を取得</string>
+    <string name="preference_luid_edit_key">luid</string>
+    <string name="preference_luid_edit_title">LUID編集</string>
+    <string name="preference_luid_edit_summary">LUIDを編集</string>
+    <string name="preference_ghost_key">ghost</string>
+    <string name="preference_ghost_title">お名前</string>
+    <string name="preference_ghost_summary">投瓶時のゴースト名(SakuraName)</string>
+    <string name="preference_place_key">place</string>
+    <string name="preference_place_title">ご住所</string>
+    <string name="preference_place_summary">投瓶時の場所</string>
+    <string name="preference_user_name_key">user_name</string>
+    <string name="preference_user_name_title">ユーザ名</string>
+    <string name="preference_user_name_summary">%usernameの置換文字列</string>
+    <string name="preference_speed_key">speed</string>
+    <string name="preference_speed_title">再生速度</string>
+    <string name="preference_speed_summary">トークを表示する速度</string>
+
+</resources>

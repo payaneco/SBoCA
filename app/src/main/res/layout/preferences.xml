@@ -1,0 +1,44 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <PreferenceCategory
+        android:title="@string/preference_title">
+
+        <Preference
+            android:key="@string/preference_luid_get_key"
+            android:title="@string/preference_luid_get_title"
+            android:summary="@string/preference_luid_get_summary"/>
+
+        <EditTextPreference
+            android:key="@string/preference_luid_edit_key"
+            android:title="@string/preference_luid_edit_title"
+            android:summary="@string/preference_luid_edit_summary"
+            android:dialogTitle="@string/preference_luid_edit_title" />
+
+        <EditTextPreference
+            android:key="@string/preference_ghost_key"
+            android:title="@string/preference_ghost_title"
+            android:summary="@string/preference_ghost_summary"
+            android:dialogTitle="@string/preference_ghost_title" />
+
+        <ListPreference
+            android:key="@string/preference_place_key"
+            android:title="@string/preference_place_title"
+            android:summary="@string/preference_place_summary"
+            android:dialogTitle="@string/preference_place_title" />
+<!--
+
+        <ListPreference
+            android:key="@string/preference_speed_key"
+            android:title="@string/preference_speed_title"
+            android:summary="@string/preference_speed_summary"
+            android:entries="@array/entries_speed"
+            android:entryValues="@array/values_speed"
+            android:dialogTitle="@string/preference_speed_title" />
+-->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_sakura">#ffcccc</color>
+    <color name="sakura_background_end">#cc7777</color>
+    <color name="sakura_solid">#cc1199</color>
+    <color name="storoke_sakura">#ff3333</color>
+    <color name="background_unyu">#aaaaff</color>
+    <color name="unyu_background_end">#7777cc</color>
+    <color name="unyu_solid">#222277</color>
+    <color name="unyu_storoke">#3333ff</color>
+    <color name="sync_solid">#d2691e</color>
+    <color name="grid_selected">#fc8040</color>
+    <color name="grid_unselected">#00000000</color>
+    <color name="grid_text_background">#aaffffff</color>
+    <color name="background_command">#eeaa44</color>
+</resources>

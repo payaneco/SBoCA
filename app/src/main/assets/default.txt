@@ -1,0 +1,23 @@
+SVG3:SSTP-Viewer-Ghost for Ver.3
+sakura=詩鳥
+unyu=雪音
+user=%username
+craftman=ＴＨ/payaneco
+url=http://th88.blog.shinobi.jp/
+hpname=今日のタンブラー
+surfacefile=sboca.png
+update=2015/04/04
+ghostname=sboca
+supported=FULLSURFACE
+sakura-action=OK
+inform=SBoCAデフォルトゴースト用SVG
+
+surface=
+0-10:*,11:12
+20:10,21:11,22:12,23:13,24:14,25:15,26:16,27:18,29:19
+32:23,37:24,47:25,38:26,48:27,58:28
+100:30,101:31,102:32
+200:21,201:22,251:20
+300:33,400:34
+
+/EOF
