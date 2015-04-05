@@ -22,8 +22,8 @@ public class Phrase{
         PATTERN_MAP.put(CommandType.Wait, "^w(\\d)(.*)$");
         PATTERN_MAP.put(CommandType.Synchronized, "^_s(.*)$");
         PATTERN_MAP.put(CommandType.QuickSession, "^_q(.*)$");
-        PATTERN_MAP.put(CommandType.MultipleURL, "^URL\\[[^\\]]+\\]((\\[http[^\\]]+\\]\\[[^\\]]+\\]){1,7})(.*)$");
-        PATTERN_MAP.put(CommandType.SimpleURL, "^URL\\[(http[^\\]]+)\\](.*)$");
+        PATTERN_MAP.put(CommandType.MultipleURL, "^URL\\[[^\\]]+\\]((\\[http://[^\\]]+\\]\\[[^\\]]+\\]){1,7})(.*)$");
+        PATTERN_MAP.put(CommandType.SimpleURL, "^URL\\[(http://[^\\]]+)\\](.*)$");
     }
     private String script;
     private boolean quickSession;

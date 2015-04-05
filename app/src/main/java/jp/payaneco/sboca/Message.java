@@ -182,8 +182,15 @@ public class Message {
         if(ghost.isEmpty() || getScript(true).isEmpty()) {
             return false;
         }
+        int urlCount = 0;
         for(Phrase phrase : getPhraseList()) {
-            if(phrase.getCommand().equals(CommandType.Unhandled)) {
+            CommandType command = phrase.getCommand();
+            if(command.equals(CommandType.Unhandled)) {
+                return false;
+            } else if(command.equals(CommandType.SimpleURL) || command.equals(CommandType.MultipleURL)) {
+                urlCount++;
+            }
+            if(urlCount > 1) {
                 return false;
             }
         }

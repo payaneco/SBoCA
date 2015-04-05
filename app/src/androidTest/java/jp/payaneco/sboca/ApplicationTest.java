@@ -314,5 +314,19 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         message.modify(0, "あ\\u");
         assertEquals("\\tあ\\u\\s[10]にゃ\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\nす。\\w9\\n！？\\e", message.getScript());
         //assertEquals("", message.getScript());
+        message = new Message(false);
+        message.insert(ActorType.Hontai, 0, "あ。", false);
+        message.insert(ActorType.Unyu, 10, "う！\nhttp://test", false);
+        assertEquals("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\n\\URL[http://test]\\e", message.getScript());
+
+        message = new Message(false);
+        message.setGhost("柊");
+        message.insert(ActorType.Hontai, 0, "あ。", false);
+        message.insert(ActorType.Unyu, 10, "う！\nhttps://test", false);
+        assertEquals("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\nhttps://test\\e", message.getScript());
+        message.setScript("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\n\\URL[http://test]\\e");
+        assertTrue(message.isPostEnabled());
+        message.setScript("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\n\\URL[https://test]\\e");
+        assertFalse(message.isPostEnabled());
     }
 }
