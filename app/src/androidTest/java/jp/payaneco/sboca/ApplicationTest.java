@@ -328,5 +328,7 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
         assertTrue(message.isPostEnabled());
         message.setScript("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\n\\URL[https://test]\\e");
         assertFalse(message.isPostEnabled());
+        message.setScript("\\t\\u\\s[10]\\h\\s[0]あ。\\w9\\w9\\uう！\\w9\\n\\URL[http://test]\\n\\URL[http://test2]\\e");
+        assertFalse(message.isPostEnabled());
     }
 }

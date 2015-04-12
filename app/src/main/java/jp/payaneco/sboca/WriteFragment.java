@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
@@ -187,35 +188,12 @@ public class WriteFragment extends Fragment {
             }
         });
 
-        RadioButton radioText = (RadioButton)getActivity().findViewById(R.id.radio_text);
-        radioText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
-                        editText.setText("");
-                        setButtonVisible(true, false, false);
-                        setRadioActorVisible(true);
-                    }
-                });
-            }
-        });
+        RadioGroup radioGroup = (RadioGroup)getActivity().findViewById(R.id.group_write);
 
-        RadioButton radioScript = (RadioButton)getActivity().findViewById(R.id.radio_script);
-        radioScript.setOnClickListener(new View.OnClickListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
-                        editText.setText(writer.getSelectedScript());
-                        setButtonVisible(false, true, false);
-                        setRadioActorVisible(false);
-                    }
-                });
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                setViewsByRadioGroup(checkedId);
             }
         });
 
@@ -229,7 +207,7 @@ public class WriteFragment extends Fragment {
                         EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
                         editText.setText(writer.getAllScript(true));
                         setButtonVisible(false, false, true);
-                        setRadioActorVisible(false);
+                        setActorTagVisible(false);
                     }
                 });
             }
@@ -253,6 +231,54 @@ public class WriteFragment extends Fragment {
 
             }
         });
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                int surfaceNo = getSelectedSurfaceNo();
+                String s = String.format("\\s[%s]", surfaceNo);
+                addEditText(s);
+                return true;
+            }
+        });
+    }
+
+    private void setViewsByRadioGroup(int checkedId) {
+        String text;
+        switch (checkedId) {
+            case R.id.radio_text:
+                text = "";
+                break;
+            case R.id.radio_script:
+                text = writer.getSelectedScript();
+                break;
+            case R.id.radio_all_script:
+                text = writer.getAllScript(true);
+                break;
+            default:
+                return;
+        }
+        setViewsByRadioGroup(checkedId, text);
+    }
+
+    private void setViewsByRadioGroup(int checkedId, String text) {
+        EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
+        switch (checkedId) {
+            case R.id.radio_text:
+                editText.setText(text);
+                setButtonVisible(true, false, false);
+                setActorTagVisible(true);
+                break;
+            case R.id.radio_script:
+                editText.setText(text);
+                setButtonVisible(false, true, false);
+                setActorTagVisible(false);
+                break;
+            case R.id.radio_all_script:
+                editText.setText(text);
+                setButtonVisible(false, false, true);
+                setActorTagVisible(false);
+                break;
+        }
     }
 
     private void resetEditors() {
@@ -269,23 +295,22 @@ public class WriteFragment extends Fragment {
     }
 
     private void setButtonVisible(boolean isAddVisible, boolean isModVisible, boolean isAllVisible) {
-        setButtonVisible(R.id.button_append, isAddVisible);
-        setButtonVisible(R.id.button_modify, isModVisible);
-        setButtonVisible(R.id.button_modify_all, isAllVisible);
+        setViewVisible(R.id.button_append, isAddVisible);
+        setViewVisible(R.id.button_modify, isModVisible);
+        setViewVisible(R.id.button_modify_all, isAllVisible);
     }
 
-    private void setButtonVisible(int id, boolean isVisible) {
-        Button target = (Button)getActivity().findViewById(id);
+    private void setViewVisible(int id, boolean isVisible) {
+        View target = getActivity().findViewById(id);
         int visibility = isVisible ? View.VISIBLE : View.GONE;
         target.setVisibility(visibility);
     }
 
-    private void setRadioActorVisible(boolean isVisible) {
-        RadioButton radioSakura = (RadioButton)getActivity().findViewById(R.id.radio_sakura);
-        RadioButton radioUnyu = (RadioButton)getActivity().findViewById(R.id.radio_unyu);
-        int visibility = isVisible ? View.VISIBLE : View.GONE;
-        radioSakura.setVisibility(visibility);
-        radioUnyu.setVisibility(visibility);
+    private void setActorTagVisible(boolean isVisible) {
+        setViewVisible(R.id.radio_sakura, isVisible);
+        setViewVisible(R.id.radio_unyu, isVisible);
+        setViewVisible(R.id.image_write, isVisible);
+        setViewVisible(R.id.tag_view, !isVisible);
     }
 
     private void setGridViewSelection(int position) {
@@ -314,7 +339,11 @@ public class WriteFragment extends Fragment {
     }
 
     private int getSelectedSurfaceNo() {
-        ViewGroup layout = (ViewGroup)selGridItem;
+        return getSelectedSurfaceNo(selGridItem);
+    }
+
+    private int getSelectedSurfaceNo(View view) {
+        ViewGroup layout = (ViewGroup)view;
         TextView textView = (TextView)layout.getChildAt(1);
         return Integer.parseInt(textView.getText().toString());
     }
@@ -362,11 +391,37 @@ public class WriteFragment extends Fragment {
                 GridView gridView = (GridView)getActivity().findViewById(R.id.grid_view);
                 gridView.setAdapter(writer.getGridAdapter(getActivity()));
                 setMessageView(writer.getViewList());
-                EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
-                editText.setText(storedText);
+                setTagView(writer.getTagViewList());
+                RadioGroup radioGroup = (RadioGroup)getActivity().findViewById(R.id.group_write);
+                setViewsByRadioGroup(radioGroup.getCheckedRadioButtonId(), storedText);
             }
         });
         return true;
+    }
+
+    private void setTagView(List<View> viewList) {
+        LinearLayout container = (LinearLayout)getActivity().findViewById(R.id.tag_view);
+        container.removeAllViews();
+        for(int i = 0; i < viewList.size(); i++) {
+            View view = viewList.get(i);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TextView textView =  (TextView)v;
+                    CharSequence replacement = textView.getText();
+                    addEditText(replacement);
+                }
+            });
+            container.addView(view);
+        }
+    }
+
+    private void addEditText(CharSequence replacement) {
+        EditText editText = (EditText)getActivity().findViewById(R.id.edit_write);
+        int start = editText.getSelectionStart();
+        int end = editText.getSelectionEnd();
+        Editable editable = editText.getText();
+        editable.replace(Math.min(start, end), Math.max(start, end), replacement);
     }
 
     private void setMessageView(List<View> viewList) {

@@ -13,4 +13,6 @@
     <color name="grid_unselected">#00000000</color>
     <color name="grid_text_background">#aaffffff</color>
     <color name="background_command">#eeaa44</color>
+    <color name="background_tag">#ffddaa</color>
+    <color name="background_tag2">#ffaa99</color>
 </resources>

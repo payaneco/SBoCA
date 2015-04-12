@@ -32,6 +32,7 @@ public class MessageWriter {
     private ArrayList<View> viewList;
     private ArrayList<String> scriptList;
     private ArrayList<Integer> surfaceList;
+    private ArrayList<View> tagList;
 
     public MessageWriter(Context context, Ghost ghost, String script) {
         setGhost(ghost);
@@ -39,6 +40,7 @@ public class MessageWriter {
 
         createSurfaceNoMap(ghost);
         initViewList(context);
+        initTagViewList(context);
     }
 
     private void createSurfaceNoMap(Ghost ghost) {
@@ -100,11 +102,40 @@ public class MessageWriter {
         initViewList(context);
     }
 
+    private void initTagViewList(Context context) {
+        tagList = new ArrayList<>();
+        int i = 0;
+        tagList.add(getTagTextView(context, i++, "\\h"));
+        tagList.add(getTagTextView(context, i++, "\\u"));
+        tagList.add(getTagTextView(context, i++, "\\n"));
+        tagList.add(getTagTextView(context, i++, "\\w5"));
+        tagList.add(getTagTextView(context, i++, "\\w9"));
+        tagList.add(getTagTextView(context, i++, "\\_s"));
+        tagList.add(getTagTextView(context, i++, "\\_q"));
+        tagList.add(getTagTextView(context, i++, "\\c"));
+        tagList.add(getTagTextView(context, i++, "\\w"));
+        tagList.add(getTagTextView(context, i++, "\\n[half]"));
+        tagList.add(getTagTextView(context, i++, "\\URL[]"));
+        tagList.add(getTagTextView(context, i++, "[]"));
+    }
+
+    private TextView getTagTextView(Context context, int i, String text) {
+        int color = (i % 2 == 0) ? R.color.background_tag : R.color.background_tag2;
+        TextView view = getTextView(context, text, color);
+        view.setTextSize(20);
+        view.setPadding(3, 2, 3, 2);
+        return view;
+    }
+
+    public List<View> getTagViewList() {
+        return tagList;
+    }
+
     private void initViewList(Context context) {
         viewList = new ArrayList<>();
         scriptList = new ArrayList<>();
         surfaceList = new ArrayList<>();
-        View view = getTextView(context, "¥t", R.color.background_command);
+        View view = getTextLayoutView(context, "¥t", R.color.background_command);
         StringBuilder sb = new StringBuilder();
         int surfaceNo = -1;
         ActorType actor = null;
@@ -136,7 +167,7 @@ public class MessageWriter {
             sb.append(phrase.getScript());
         }
         put(view, sb.toString(), surfaceNo);
-        view = getTextView(context, "¥e", R.color.background_command);
+        view = getTextLayoutView(context, "¥e", R.color.background_command);
         put(view, "", getLastSurfaceNo(actor));
     }
 
@@ -155,25 +186,30 @@ public class MessageWriter {
     }
 
     private View getSakuraView(Context context) {
-        return getTextView(context, "¥h", R.color.background_sakura);
+        return getTextLayoutView(context, "¥h", R.color.background_sakura);
     }
 
     private View getUnyuView(Context context) {
-        return getTextView(context, "¥u", R.color.background_unyu);
+        return getTextLayoutView(context, "¥u", R.color.background_unyu);
     }
 
-    private View getTextView(Context context, String text, int colorId) {
+    private View getTextLayoutView(Context context, String text, int colorId) {
+        TextView view = getTextView(context, text, colorId);
+        LinearLayout layout = new LinearLayout(context);
+        layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        layout.setPadding(3, 5, 3, 5);
+        layout.addView(view);
+        return layout;
+    }
+
+    private TextView getTextView(Context context, String text, int colorId) {
         TextView view = new TextView(context);
         view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
         view.setText(text);
         int color = context.getResources().getColor(colorId);
         view.setBackgroundColor(color);
         view.setGravity(Gravity.CENTER);
-        LinearLayout layout = new LinearLayout(context);
-        layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        layout.setPadding(3, 5, 3, 5);
-        layout.addView(view);
-        return layout;
+        return view;
     }
 
     private View getSurfaceView(Context context, int surfaceNo) {
