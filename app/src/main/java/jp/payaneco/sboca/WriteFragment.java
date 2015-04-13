@@ -234,7 +234,7 @@ public class WriteFragment extends Fragment {
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                int surfaceNo = getSelectedSurfaceNo();
+                int surfaceNo = getSelectedSurfaceNo(view);
                 String s = String.format("\\s[%s]", surfaceNo);
                 addEditText(s);
                 return true;

@@ -246,12 +246,12 @@ public class PlaceholderFragment extends Fragment {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectNext();
-                if (getSelIndex() >= getMessageList().size()) {
+                if (getSelIndex() >= getMessageList().size() - 1) {
                     showToast(getString(R.string.last_bottle), Toast.LENGTH_SHORT);
                     selectLast();
                     return;
                 }
+                selectNext();
                 play();
             }
         });
